@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-import authRoutes from './routes/auth.routes';
+import authRoutes from './routes/auth.routes.js';
 
 dotenv.config();
 
@@ -17,5 +17,5 @@ app.get('/health', (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Servidor listo en: http://localhost:${PORT}`);
+  console.log(`Servidor vivo! en: http://localhost:${PORT}`);
 });
