@@ -18,7 +18,8 @@ model User {
   email     String   @unique
   password  String
   name      String
-  role      Role     @default(USER)
+  phone     String?
+  role      Role     @default(PATIENT)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -30,6 +31,7 @@ model User {
 // ROLES (Usuario básico)
 // ============================================
 enum Role {
-  ADMIN  // Administrador del sistema
-  USER   // Usuario regular
+  ADMIN   // Administrador del sistema
+  DOCTOR  // Doctor
+  PATIENT // Paciente
 }

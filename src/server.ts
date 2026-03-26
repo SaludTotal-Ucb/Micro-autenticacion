@@ -23,6 +23,8 @@ app.use(
 app.use(express.json());
 
 app.use('/auth', authRoutes);
+app.use('/api/auth', authRoutes); // Alias para compatibilidad con frontend que use /api/auth
+
 app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'ok', service: 'Autenticación Salud Total' });
 });

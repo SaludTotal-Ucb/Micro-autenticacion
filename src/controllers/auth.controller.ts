@@ -77,10 +77,10 @@ export const register = async (req: Request, res: Response) => {
       });
     }
 
-    const { name, email, password } = validation.data;
+    const { name, email, password, phone } = validation.data;
 
     // Crear usuario
-    const newUser = await AuthService.registerUser(name, email, password);
+    const newUser = await AuthService.registerUser(name, email, password, phone);
 
     return res.status(201).json({
       success: true,
