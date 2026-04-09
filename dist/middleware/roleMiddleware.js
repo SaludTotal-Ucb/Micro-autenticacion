@@ -1,0 +1,12 @@
+export const requireRole = (allowedRoles) => {
+    return (req, res, next) => {
+        const userRole = req.user?.role;
+        if (!userRole || !allowedRoles.includes(userRole)) {
+            return res.status(403).json({
+                success: false,
+                message: `Acceso denegado. Roles permitidos: ${allowedRoles.join(', ')}. Tu rol: ${userRole || 'sin asignar'}`,
+            });
+        }
+        next();
+    };
+};

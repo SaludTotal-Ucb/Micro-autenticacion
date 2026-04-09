@@ -88,6 +88,7 @@ export const register = async (req: Request, res: Response) => {
       data: newUser,
     });
   } catch (error: unknown) {
+    console.error("ERROR EN REGISTRO:", error);
     let statusCode = 500;
     let message = 'Error al registrar usuario';
 
