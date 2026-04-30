@@ -1,15 +1,17 @@
-FROM node:20-alpine
-
+FROM node:20-slim
 WORKDIR /app
 
+# 1. Copiamos los archivos de dependencias
 COPY package*.json ./
-RUN npm ci
 
+# 2. Instalamos todo omitiendo scripts conflictivos (y sin apt-get update)
+RUN npm install --ignore-scripts
+
+# 3. Copiamos TODO el código (incluyendo la carpeta dist que ya está lista)
 COPY . .
-RUN npm run build
 
-EXPOSE 3001
+EXPOSE 3002
 
-RUN ls -la dist/server.js || echo "ALERTA: No se encontro el archivo server.js"
-
-CMD ["node", "dist/server.js"]
+# 4. EL TRUCO: En lugar de generar Prisma ahora y que se cuelgue, 
+# le decimos que lo genere rápido SOLO cuando el contenedor se encienda.
+CMD npx prisma generate && node dist/server.js
